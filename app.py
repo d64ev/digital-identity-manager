@@ -10,15 +10,25 @@ import re
 from flask import Flask, render_template, request, flash, redirect
 import configparser
 
-ACCOUNTS = ["mastodon", "twitter"]
 
-account_pattern = re.compile("https://.*/@?(.*)")
+account_pattern = re.compile("https://(.*)/@?(.*)")
 
 class InvalidStateException(BaseException):
     pass
 
 
 app = Flask(__name__)
+
+def twitter_accountname(url):
+    return account_pattern.findall(url)[0][1]
+
+def mastodon_accountname(url):
+    print(account_pattern.findall(url))
+    username = account_pattern.findall(url)[0][1]
+    url = account_pattern.findall(url)[0][0]
+    return f"{username}@{url}"
+
+ACCOUNTS = [("mastodon", mastodon_accountname), ("twitter", twitter_accountname)]
 
 def parse_config() -> dict:
     config = configparser.ConfigParser()
@@ -78,10 +88,10 @@ def create():
     else:
         try:
             accounts = [{ "service": "bluesky", "url": f"https://bsky.app/profile/{username}", "name": username}]
-            for a in ACCOUNTS:
-                if len(request.form.get(a)) > 0:
-                    account_url = request.form.get(a)
-                    accounts.append({ "service": a, "url": account_url, "name": account_pattern.findall(account_url)[0]})
+            for (service, fn_name) in ACCOUNTS:
+                if len(request.form.get(service)) > 0:
+                    account_url = request.form.get(service)
+                    accounts.append({ "service": service, "url": account_url, "name": fn_name(account_url)})
 
             create_user(username, did, cfg['path'], accounts, cfg['website_dir'])
             flash(
