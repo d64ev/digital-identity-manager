@@ -1,0 +1,18 @@
+div.flash {
+    padding: 15px;
+}
+
+div.flash.success {
+    background: lightgreen;
+    border: 1px solid green;
+}
+
+div.flash.error {
+    background: lightcoral;
+    border: 1px solid red;
+}
+
+input.remove {
+    float: left;
+    clear: left;
+}

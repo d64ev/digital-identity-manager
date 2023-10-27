@@ -1,0 +1,4 @@
+settings.ini
+venv/
+uwsgi.ini
+*.pid

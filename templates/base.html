@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D64 Bluesky Identity Manager</title>
+    <link rel="stylesheet" href="/{{ prefix }}{{ url_for('static', filename='water.css') }}">
+    <link rel="stylesheet" href="/{{ prefix }}{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<div class="flash {{ category }}" >{{ message }}</div>
+{% endfor %}
+<h1>D64 Bluesky Identity Manager</h1>
+<p>Everything takes several seconds, sorry!</p>
+<h2>Add New User</h2>
+<form method="post" action="/{{ prefix }}create">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="did">DID</label>
+    <input type="text" name="did" id="did" required>
+    <label for="mastodon">Mastodon Profil URL</label>
+    <input type="text" name="mastodon" id="mastodon" placeholder="https://d-64.social/@D64eV">
+    <label for="twitter">Twitter Profil URL</label>
+    <input type="text" name="twitter" id="twitter" placeholder="https://twitter.com/D64ev">
+    <input type="submit" value="Create">
+</form>
+
+<h2>Existing Users</h2>
+<ul>
+{% for user in existing_users %}
+    <form method="post" action="/{{ prefix }}remove" id="form-remove-{{ user }}">
+    <li>{{ user }} (<input type="hidden" name="username" value="{{ user }}"><a href="#" onclick="if (window.confirm('Do you want to remove {{ user }}?')) { document.getElementById('form-remove-{{ user }}').submit() }">Remove</a>)</li></form>
+{% endfor %}
+</ul>
+
+<p>We use <a href="https://github.com/kognise/water.css">water.css</a>, which is opens-source under <a href="https://github.com/kognise/water.css/blob/master/LICENSE.md">MIT License</a>.</p>
+</body>
+</html>
