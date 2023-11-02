@@ -90,7 +90,7 @@ def create():
     if username in users:
         flash(f"User {username} does already exist!", category='error')
     elif not check_username(request.form['username']):
-        flash(f"Username {username} does contain invalid characters! Only a-z0-9 and - "
+        flash(f"Username {username} does contain invalid characters! Only a-z0-9 . and - "
               f"are allowed!", category='error')
     elif len(request.form['username']) > 63:
         flash(f"Username {username} is too long!", category='error')
@@ -142,7 +142,9 @@ def find_subdomains(path: str, domain: str) -> List[str]:
 
 
 def check_username(base_name: str) -> bool:
-    allowed = set(string.ascii_lowercase + string.digits + '-')
+    allowed = set(string.ascii_lowercase + string.digits + '-' + '.')
+    if ".." in base_name:
+        return False
     return set(base_name) <= allowed
 
 
@@ -160,6 +162,9 @@ def create_user(username: str, did: str, accounts):
     with open(f"{CFG['path']}/{username}/index.php", "w") as f:
         f.writelines(webpage)
 
+    with open(f"{CFG['path']}/{username}/robots.txt", "w") as f:
+        f.writelines("User-agent: *\nDisallow: /")
+
 
 def try_rm(path):
     try:
@@ -172,6 +177,7 @@ def remove_user(username: str, path: str):
     try_rm(f"{path}/{username}/.well-known/atproto-did")
     try_rm(f"{path}/{username}/accounts.json")
     try_rm(f"{path}/{username}/index.php")
+    try_rm(f"{path}/{username}/robots.txt")
 
     os.rmdir(f"{path}/{username}/.well-known/")
     os.rmdir(f"{path}/{username}/")
