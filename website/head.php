@@ -3,8 +3,8 @@
     <link href="https://admin.d-64.social/fonts.css" rel="stylesheet">
     <meta content="summary" name="twitter:card"/>
     <meta content="https://admin.d-64.social/logo.png" name="twitter:image"/>
-    <meta content="D64 Auth-Service" property="og:title"/>
-    <meta content="Der D64-Authentifizierungsservice für Mitglieder." property="og:description"/>
+    <meta content="D64 Verifizierungsservice" property="og:title"/>
+    <meta content="Der D64-Verifizierungsservice für Mitglieder." property="og:description"/>
     <meta content="https://admin.d-64.social/logo.png" property="og:image"/>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <title>D64 Auth-Service</title>
+    <title>D64 Verifizierungsservice</title>

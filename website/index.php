@@ -11,7 +11,7 @@
 		<?php include '$WEBSITE_DIR/main-hero.php' ?>
    </div>
     <div id="main-content">
-    <h2>Authentifizierte Profile</h2>
+    <h2>Verifizierte Profile</h2>
     <?php
     $accounts_json = file_get_contents("accounts.json");
     $accounts = json_decode($accounts_json);
