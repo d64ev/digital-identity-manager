@@ -43,7 +43,7 @@ def parse_config() -> dict:
         "path": config['DEFAULT']['Path'],
         "secret": config['DEFAULT']['Secret'],
         "port": config['DEFAULT']['Port'],
-        "prefix": config['DEFAULT']['Prefix'],
+        "prefix": config['DEFAULT']['Subdirectory'],
         "website_dir": config['DEFAULT']['WebsitePath'],
 
     }

@@ -10,5 +10,5 @@
         </div>
     </div>
     <div id="legal">
-        <span class='copyright'>2023 CC-BY-SA 4.0 D64 &ndash; Zentrum f&uuml;r digitalen Fortschritt e.V. | <a href="https://d-64.org/impressum/">Impressum</a> | <a href="https://github.com/eknoes/covid-bot/wiki/Datenschutz">Datenschutzerkl&auml;rung</a> | <a href="https://d-64.org/kontakt/">Kontakt</a></span>
+        <span class='copyright'>2023 CC-BY-SA 4.0 D64 &ndash; Zentrum f&uuml;r digitalen Fortschritt e.V. | <a href="https://d-64.org/impressum/">Impressum</a> | <a href="https://github.com/eknoes/covid-bot/wiki/Datenschutz">Datenschutzerkl&auml;rung</a> | <a href="https://d-64.org/kontakt/">Kontakt</a></span> | <a href="https://github.com/d64ev/digital-identity-manager">Projekt auf Github</a>
     </div>

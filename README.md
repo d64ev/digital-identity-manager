@@ -1,4 +1,4 @@
-# D-64 Identity Service for Uberspace
+# D64 Identity Service for Uberspace
 As our service runs on [Uberspace](https://uberspace.de/en/), it uses the hoster's tooling to create subdomains, manage certificates, etc.
 
 Please be advised that this is a proof-of-concept highly adapted to our environment, but nevertheless (to the best of our knowledge) secure and working for the scale of users we currently need to verify.
@@ -18,8 +18,8 @@ pip install -r requirements.txt
 
 ```
 [DEFAULT]
-Prefix=URL_SUBDIR/
 Domain=YOUR_DOMAIN
+Subdirectory=URL_SUBDIR/
 Path=Path to your /var/www/virtual/USERNAME/ directory
 Secret=A long, random string
 Port=PORT
@@ -42,7 +42,7 @@ Make sure that Wildcard DNS A / AAAA entries resolve your domain to your uberspa
 For each user, the `website/index.php` file is copied to the users directory. The surrounding template is included, so you can adapt those files in `website/`.
 
 ## Usage
-Login with your username and password at https://$Domain/$Prefix. You can now add or delete users.
+Login with your username and password at https://$Domain/$Subdirectory. You can now add or delete users.
 Updating is not (yet) possible in the interface.
 As for each user a Lets Encrypt certificate is requested, creation takes several seconds.
 
